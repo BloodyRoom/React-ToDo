@@ -37,7 +37,6 @@ function App() {
 
       <div style={taskContainerStyle}>
         <Task />
-        <Task />
       </div>
     </>
   )
