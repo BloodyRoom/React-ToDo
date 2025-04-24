@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Textarea = ({placeholder = "", value, onChange, sx, color = "rgb(41, 31, 129)"}) => {
+const Textarea = ({name, id, placeholder = "", value, onChange, onBlur, sx, color = "rgb(41, 31, 129)"}) => {
     const [hover, setHover] = useState(false);
     const [focus, setFocus] = useState(false);
 
@@ -20,17 +20,24 @@ const Textarea = ({placeholder = "", value, onChange, sx, color = "rgb(41, 31, 1
 
     const mergeStyles = {...style, ...sx};
 
+    const onBlurHandler = (event) => {
+        setFocus(false);
+        onBlur(event);
+    }
+
     return (
         <>
             <textarea 
+                name={name}
+                id={id}
                 type="text" 
                 style={mergeStyles} 
                 placeholder={placeholder} 
                 onMouseLeave={() => {setHover(false)}} 
                 onMouseEnter={() => {setHover(true)}}
                 onFocus={() => {setFocus(true)}}
-                onBlur={() => {setFocus(false)}}
 
+                onBlur={onBlurHandler}
                 value={value}
                 onChange={onChange}
             />

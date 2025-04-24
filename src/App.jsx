@@ -8,6 +8,8 @@ import { useFormik } from 'formik'
 import * as Yup from "yup";
 
 function App() {
+  const [tasks, setTasks] = useState([]);
+
   const formStyle = {
     display: "flex",
     width: "344px",
@@ -27,6 +29,12 @@ function App() {
     gap: "10px"
   }
 
+  const addTask = (values) => {
+    console.log(values);
+    setTasks([...tasks, {title: values.title.trim(), description: values.description.trim()}]);
+    console.log(tasks);
+  }
+
   const validationScheme = Yup.object({
     title: Yup.string()
       .required("Title is required")
@@ -38,11 +46,9 @@ function App() {
     description: ""
   }
 
-
-
   const formik = useFormik({
     initialValues: initValues,
-    // onSubmit: addTask,
+    onSubmit: addTask,
     validationSchema: validationScheme,
   });
 
@@ -60,14 +66,25 @@ function App() {
         {formik.touched.title && formik.errors.title ? (
           <p style={{color: "rgb(147, 59, 59)", textAlign: "start", width: "90%", margin: "0"}}>{formik.errors.title}</p>
         ) : null}
-        <Textarea placeholder="Description"/>
+        <Textarea 
+          name="description"
+          id="description"
+          placeholder="Description"
+          onChange={formik.handleChange}
+          value={formik.values.description}
+          onBlur={formik.handleBlur}
+        />
         <div style={{width: "100%", display: "flex", justifyContent: "end"}}>
           <Button>Add</Button>
         </div>
       </form>
 
       <div style={taskContainerStyle}>
-        <Task />
+        {
+          tasks.map((task) => (
+            <Task title={task.title} description={task.description} />
+          ))
+        }
       </div>
     </>
   )

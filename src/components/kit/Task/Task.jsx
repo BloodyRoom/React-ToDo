@@ -1,6 +1,6 @@
 import Button from "../Button/Button";
 
-const Task = () => {
+const Task = ({title, description}) => {
     const style = {
         borderRadius: "18px",
         minHeight: "100px",
@@ -20,14 +20,14 @@ const Task = () => {
         <>
             <div style={style}>
                 <div>
-                    <p style={{fontSize: "17px", marginBottom: "0"}}>Title</p>
+                    <p style={{fontSize: "17px", marginBottom: "0"}}>{title}</p>
                     <p style={{fontSize: "13px", marginTop: "0", whiteSpace: "pre", wordWrap: "break-word", textWrap: "wrap", width: "200px"}}>
-                        Desc...
+                        {description}
                     </p>
                 </div>
                 <div style={{display: "flex", flexDirection: "column"}}>
-                    <Button color="rgb(147, 59, 59)" variant="transparent" sx={{width: "100px", minWidth: "0", height: "40px", minHeight: "0", marginBottom: "5px"}}>Delete</Button>
-                    <Button variant="transparent" sx={{width: "100px", minWidth: "0", height: "40px", minHeight: "0"}}>Edit</Button>
+                    {/* <Button color="rgb(147, 59, 59)" variant="transparent" sx={{width: "100px", minWidth: "0", height: "40px", minHeight: "0", marginBottom: "5px"}}>Delete</Button> */}
+                    {/* <Button variant="transparent" sx={{width: "100px", minWidth: "0", height: "40px", minHeight: "0"}}>Edit</Button> */}
                 </div>
             </div>
         </>
