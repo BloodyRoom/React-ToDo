@@ -26,7 +26,7 @@ const Task = () => {
                     </p>
                 </div>
                 <div style={{display: "flex", flexDirection: "column"}}>
-                    <Button variant="transparent" sx={{width: "100px", minWidth: "0", height: "40px", minHeight: "0", marginBottom: "5px"}}>Delete</Button>
+                    <Button color="rgb(147, 59, 59)" variant="transparent" sx={{width: "100px", minWidth: "0", height: "40px", minHeight: "0", marginBottom: "5px"}}>Delete</Button>
                     <Button variant="transparent" sx={{width: "100px", minWidth: "0", height: "40px", minHeight: "0"}}>Edit</Button>
                 </div>
             </div>

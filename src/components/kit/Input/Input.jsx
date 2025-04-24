@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Input = ({placeholder = "", value, onChange, sx}) => {
+const Input = ({placeholder = "", value, onChange, sx, color = "rgb(41, 31, 129)"}) => {
     const [hover, setHover] = useState(false);
     const [focus, setFocus] = useState(false);
 
@@ -10,7 +10,7 @@ const Input = ({placeholder = "", value, onChange, sx}) => {
         minWidth: "300px",
         padding: "0px 20px",
         backgroundColor: "rgba(0, 0, 0, 0.3)",
-        border: hover || focus ? "2px solid rgb(41, 31, 129)" : "2px solid rgba(255, 255, 255, 0.3)",
+        border: hover || focus ? `2px solid ${color}` : "2px solid rgba(255, 255, 255, 0.3)",
         color: "white",
         transition: "border .2s",
         outline: "none"
