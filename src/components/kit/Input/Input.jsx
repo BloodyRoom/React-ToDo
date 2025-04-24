@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Input = ({placeholder = "", value, onChange, sx, color = "rgb(41, 31, 129)"}) => {
+const Input = ({name, id, placeholder = "", value, onChange, onBlur, sx, color = "rgb(41, 31, 129)"}) => {
     const [hover, setHover] = useState(false);
     const [focus, setFocus] = useState(false);
 
@@ -18,19 +18,26 @@ const Input = ({placeholder = "", value, onChange, sx, color = "rgb(41, 31, 129)
 
     const mergeStyles = {...style, ...sx};
 
+    const onBlurHandler = (event) => {
+        setFocus(false);
+        onBlur(event);
+    }
+
     return (
         <>
             <input 
+                name={name}
+                id={id}
                 type="text" 
                 style={mergeStyles} 
                 placeholder={placeholder} 
                 onMouseLeave={() => {setHover(false)}} 
                 onMouseEnter={() => {setHover(true)}}
                 onFocus={() => {setFocus(true)}}
-                onBlur={() => {setFocus(false)}}
 
+                onBlur={onBlurHandler}
                 value={value}
-                onChange={onChange}
+                onChange={(event) => {onChange(event)}}
             />
         </>
     )
