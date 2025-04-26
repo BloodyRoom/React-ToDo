@@ -1,6 +1,9 @@
 import Button from "../Button/Button";
+import { useAction } from "../../../hooks/useAction";
 
-const Task = ({title, description}) => {
+const Task = ({id, title, description}) => {
+    const { deleteTask } = useAction();
+
     const style = {
         borderRadius: "18px",
         minHeight: "100px",
@@ -26,7 +29,7 @@ const Task = ({title, description}) => {
                     </p>
                 </div>
                 <div style={{display: "flex", flexDirection: "column"}}>
-                    {/* <Button color="rgb(147, 59, 59)" variant="transparent" sx={{width: "100px", minWidth: "0", height: "40px", minHeight: "0", marginBottom: "5px"}}>Delete</Button> */}
+                    <Button onClick={() => {deleteTask(id)}} color="rgb(147, 59, 59)" variant="transparent" sx={{width: "100px", minWidth: "0", height: "40px", minHeight: "0", marginBottom: "5px"}}>Delete</Button>
                     {/* <Button variant="transparent" sx={{width: "100px", minWidth: "0", height: "40px", minHeight: "0"}}>Edit</Button> */}
                 </div>
             </div>

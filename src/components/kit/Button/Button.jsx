@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Button = ({ children, onChange, sx, variant = "contained", color = "rgb(41, 31, 129)" }) => {
+const Button = ({ children, onChange, sx, variant = "contained", color = "rgb(41, 31, 129)", onClick }) => {
     const [hover, setHover] = useState(false);
 
     const style = {
@@ -40,6 +40,7 @@ const Button = ({ children, onChange, sx, variant = "contained", color = "rgb(41
                 style={mergeStyles}
 
                 onChange={onChange}
+                onClick={onClick}
             >
                 {children}
             </button>

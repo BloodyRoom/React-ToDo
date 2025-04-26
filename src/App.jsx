@@ -38,6 +38,8 @@ function App() {
 
   const addTask = (values) => {
     createTasks({title: values.title.trim(), description: values.description.trim()});
+    formik.setValues({title: "", description: ""});
+    formik.resetForm();
   }
 
   const validationScheme = Yup.object({
@@ -87,7 +89,7 @@ function App() {
       <div style={taskContainerStyle}>
         {
           tasks.map((task) => (
-            <Task key={task.id} title={task.title} description={task.description} />
+            <Task key={task.id} id={task.id} title={task.title} description={task.description} />
           ))
         }
       </div>

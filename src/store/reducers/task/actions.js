@@ -44,3 +44,15 @@ export const createTasks = (task) => {
     localStorage.setItem("tasks", JSON.stringify(newTasks));
     return { type: "CREATE_TASK", payload: newTasks };
 }
+
+export const deleteTask = (id) => {
+    const localData = localStorage.getItem("tasks");
+    let tasks = [];
+    if (localData) {
+        tasks = JSON.parse(localData);
+    }
+
+    const newTasks = tasks.filter((task) => task.id !== id);
+    localStorage.setItem("tasks", JSON.stringify(newTasks));
+    return { type: "DELETE_TASK", payload: newTasks };
+}
