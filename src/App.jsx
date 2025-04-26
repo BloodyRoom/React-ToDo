@@ -7,8 +7,28 @@ import Task from './components/kit/Task/Task'
 import { useFormik } from 'formik'
 import * as Yup from "yup";
 
+
 function App() {
   const [tasks, setTasks] = useState([]);
+  
+  const generateID = (length = 8) => {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    for (let i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+
+    if (tasks.find((task) => {
+      if (task.id === result) {
+        return true;
+      }
+      return false;
+    })) {
+      generateID(length++);
+    }
+
+    return result;
+  }
 
   const formStyle = {
     display: "flex",
@@ -31,7 +51,7 @@ function App() {
 
   const addTask = (values) => {
     console.log(values);
-    setTasks([...tasks, {title: values.title.trim(), description: values.description.trim()}]);
+    setTasks([...tasks, {id: generateID(), title: values.title.trim(), description: values.description.trim()}]);
     console.log(tasks);
   }
 
@@ -82,7 +102,7 @@ function App() {
       <div style={taskContainerStyle}>
         {
           tasks.map((task) => (
-            <Task title={task.title} description={task.description} />
+            <Task key={task.id} title={task.title} description={task.description} />
           ))
         }
       </div>
