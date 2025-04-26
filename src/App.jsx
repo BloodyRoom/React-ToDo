@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import Input from './components/kit/Input/Input'
 import Textarea from './components/kit/Textarea/Textarea'
@@ -6,29 +6,16 @@ import Button from './components/kit/Button/Button'
 import Task from './components/kit/Task/Task'
 import { useFormik } from 'formik'
 import * as Yup from "yup";
-
+import { useAction } from "./hooks/useAction";
+import { useSelector } from 'react-redux'
 
 function App() {
-  const [tasks, setTasks] = useState([]);
-  
-  const generateID = (length = 8) => {
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let result = '';
-    for (let i = 0; i < length; i++) {
-        result += characters.charAt(Math.floor(Math.random() * characters.length));
-    }
+  const { tasks } = useSelector((state) => state.task); 
+  const { loadTasks, createTasks } = useAction();
 
-    if (tasks.find((task) => {
-      if (task.id === result) {
-        return true;
-      }
-      return false;
-    })) {
-      generateID(length++);
-    }
-
-    return result;
-  }
+  useEffect(() => {
+    loadTasks();
+  }, []);
 
   const formStyle = {
     display: "flex",
@@ -50,9 +37,7 @@ function App() {
   }
 
   const addTask = (values) => {
-    console.log(values);
-    setTasks([...tasks, {id: generateID(), title: values.title.trim(), description: values.description.trim()}]);
-    console.log(tasks);
+    createTasks({title: values.title.trim(), description: values.description.trim()});
   }
 
   const validationScheme = Yup.object({
