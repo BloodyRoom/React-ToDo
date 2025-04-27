@@ -89,7 +89,7 @@ function App() {
       <div style={taskContainerStyle}>
         {
           tasks.map((task) => (
-            <Task key={task.id} id={task.id} title={task.title} description={task.description} />
+            <Task key={task.id} id={task.id} title={task.title} description={task.description} complete={task.complete} />
           ))
         }
       </div>
