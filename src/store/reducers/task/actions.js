@@ -40,7 +40,7 @@ export const createTasks = (task) => {
         tasks = JSON.parse(localData);
     }
 
-    const newTasks = [...tasks, {id: generateID(), ...task}];
+    const newTasks = [{id: generateID(), complete: false, ...task}, ...tasks];
     localStorage.setItem("tasks", JSON.stringify(newTasks));
     return { type: "CREATE_TASK", payload: newTasks };
 }
