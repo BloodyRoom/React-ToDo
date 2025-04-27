@@ -10,6 +10,8 @@ export function taskReducer(state = initState, action) {
             return { ...state, tasks: action.payload }
         case "DELETE_TASK":
             return { ...state, tasks: action.payload }
+        case "UPDATE_TASK":
+            return { ...state, tasks: action.payload }
         default:
             return state;
     }

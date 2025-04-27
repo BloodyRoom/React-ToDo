@@ -3,14 +3,14 @@ import { useAction } from "../../../hooks/useAction";
 import { useState } from "react";
 
 const Task = ({id, title, description, complete}) => {
-    const { deleteTask } = useAction();
+    const { deleteTask, completeToggle } = useAction();
     const [hover, setHover] = useState(false);
 
     const style = {
         borderRadius: "18px",
         minHeight: "100px",
         minWidth: "300px",
-        padding: "0px 20px",
+        padding: "0px 15px",
         backgroundColor: "rgba(0, 0, 0, 0.3)",
         border: complete ? "2px solid rgb(60, 147, 59)" : "2px solid rgba(255, 255, 255, 0.15)",
         color: "white",
@@ -38,7 +38,7 @@ const Task = ({id, title, description, complete}) => {
                 </div>
                 <div style={{display: "flex", flexDirection: "column"}}>
                     <Button onClick={() => {deleteTask(id)}} color="rgb(147, 59, 59)" variant="transparent" sx={{width: "110px", minWidth: "0", height: "40px", minHeight: "0", marginBottom: "5px"}}>Delete</Button>
-                    <Button color="rgb(60, 147, 59)" variant="transparent" sx={{width: "110px", minWidth: "0", height: "40px", minHeight: "0"}}>{complete ? "Renew" : "Complete"}</Button>
+                    <Button onClick={() => {completeToggle(id)}} color="rgb(60, 147, 59)" variant="transparent" sx={{width: "110px", minWidth: "0", height: "40px", minHeight: "0"}}>{complete ? "Renew" : "Complete"}</Button>
                 </div>
             </div>
         </>

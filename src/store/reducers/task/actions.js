@@ -45,6 +45,23 @@ export const createTasks = (task) => {
     return { type: "CREATE_TASK", payload: newTasks };
 }
 
+export const completeToggle = (id) => {
+    const localData = localStorage.getItem("tasks");
+    let tasks = [];
+    if (localData) {
+        tasks = JSON.parse(localData);
+    }
+
+    tasks.forEach(task => {
+        if (task.id === id) {
+            task.complete = !task.complete;
+        }
+    });
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    return { type: "UPDATE_TASK", payload: tasks };
+
+}
+
 export const deleteTask = (id) => {
     const localData = localStorage.getItem("tasks");
     let tasks = [];
