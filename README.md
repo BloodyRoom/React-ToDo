@@ -45,4 +45,4 @@ Follow these steps to run the project locally:
 
 Here is a preview of the application:
 
-![App Screenshot](./screenshot.png)
+![App Preview](./preview.gif)
