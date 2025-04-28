@@ -27,6 +27,9 @@ export const loadTasks = () => {
     const localData = localStorage.getItem("tasks");
     if (localData) {
         const tasks = JSON.parse(localData);
+
+        tasks.sort((a, b) => a.complete - b.complete);
+
         return { type: "LOAD_TASKS", payload: tasks };
     } else {
         return { type: "LOAD_TASKS", payload: [] };
@@ -57,6 +60,7 @@ export const completeToggle = (id) => {
             task.complete = !task.complete;
         }
     });
+    tasks.sort((a, b) => a.complete - b.complete);
     localStorage.setItem("tasks", JSON.stringify(tasks));
     return { type: "UPDATE_TASK", payload: tasks };
 
